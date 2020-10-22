@@ -3,13 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
+    "deploy": "yarn export && gh-pages -d out -t true",
+    "dev": "next dev",
+    "export": "yarn build && next export -o jpegasus-demo-nextjs && touch jpegasus-demo-nextjs/.nojekyll",
+    "serve": "yarn export && serve -l 3000",
     "start": "next start"
   },
   "dependencies": {
     "next": "9.5.5",
     "react": "17.0.1",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.2",
+    "@types/react": "^16.9.53",
+    "gh-pages": "^3.1.0",
+    "serve": "^11.3.2",
+    "typescript": "^4.0.3"
   }
 }
