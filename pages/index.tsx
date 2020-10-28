@@ -11,7 +11,7 @@ export default function Home() {
           <form>
             <label>
               <strong>Max Height</strong>
-              <select id="maxHeightSelector">
+              <select id="maxHeightSelector" value="1000">
                   <option value="10000">10000</option>
                   <option value="9900">9900</option>
                   <option value="9800">9800</option>
@@ -102,7 +102,7 @@ export default function Home() {
                   <option value="1300">1300</option>
                   <option value="1200">1200</option>
                   <option value="1100">1100</option>
-                  <option defaultValue value="1000">1000</option>
+                  <option value="1000">1000</option>
                   <option value="900">900</option>
                   <option value="800">800</option>
                   <option value="700">700</option>
@@ -207,7 +207,7 @@ export default function Home() {
                     <option value="1300">1300</option>
                     <option value="1200">1200</option>
                     <option value="1100">1100</option>
-                    <option defaultValue value="1000">1000</option>
+                    <option defaultValue="1000">1000</option>
                     <option value="900">900</option>
                     <option value="800">800</option>
                     <option value="700">700</option>
@@ -322,7 +322,7 @@ export default function Home() {
                     <option value="1.03">1.03</option>
                     <option value="1.02">1.02</option>
                     <option value="1.01">1.01</option>
-                    <option defaultValue value="1">1</option>
+                    <option defaultValue="1">1</option>
                     <option value="0.99">0.99</option>
                     <option value="0.98">0.98</option>
                     <option value="0.97">0.97</option>
@@ -426,7 +426,7 @@ export default function Home() {
               </label>
               <label>
                  <strong>Quality</strong>
-                 <select id="qualitySelector" value="1">
+                 <select id="qualitySelector" value="0.65">
                     <option value="1">1</option>
                     <option value="0.99">0.99</option>
                     <option value="0.98">0.98</option>
@@ -462,7 +462,7 @@ export default function Home() {
                     <option value="0.68">0.68</option>
                     <option value="0.67">0.67</option>
                     <option value="0.66">0.66</option>
-                    <option defaultValue value="0.65">0.65</option>
+                    <option value="0.65">0.65</option>
                     <option value="0.64">0.64</option>
                     <option value="0.63">0.63</option>
                     <option value="0.62">0.62</option>
@@ -531,41 +531,41 @@ export default function Home() {
               </label>
               <label>
                  <strong>Return original if compressed file is larger</strong>
-                 <select id="returnOriginalIfCompressedFileIsLargerSelector" value="1">
-                    <option defaultValue value="false">false</option>
+                 <select id="returnOriginalIfCompressedFileIsLargerSelector" value="false">
+                    <option value="false">false</option>
                     <option value="true">true</option>
                  </select>
               </label>
               <label>
                  <strong>Return original on failure</strong>
-                 <select id="returnOriginalOnFailureSelector" value="1">
-                    <option defaultValue value="true">true</option>
+                 <select id="returnOriginalOnFailureSelector" value="true">
+                    <option value="true">true</option>
                     <option value="false">false</option>
                  </select>
               </label>
               <label>
                  <strong>Fix image orientation</strong>
-                 <select id="fixImageOrientation">
-                    <option defaultValue value="true">true</option>
+                 <select id="fixImageOrientation" value="true">
+                    <option value="true">true</option>
                     <option value="false">false</option>
                  </select>
               </label>
               <label>
                  <strong>Preserve file type</strong>
-                 <select id="preserveFileType">
+                 <select id="preserveFileType" value="false">
                     <option value="true">true</option>
-                    <option defaultValue value="false">false</option>
+                    <option value="false">false</option>
                  </select>
               </label>
               <label>
                  <strong>Transparency fill color</strong>
-                 <input type="text" id="transparencyFillColor" defaultValue="#FFF" />
+                 <input type="text" id="transparencyFillColor" value="#FFF" />
               </label>
               <label>
                  <strong>Upload Image</strong>
                  <input type="file" id="imageInput" />
               </label>
-              <input type="button" value="Submit" onClick="compressAndReportResults" />
+              <input type="button" value="Submit" />
               <table>
                  <thead>
                     <tr>
