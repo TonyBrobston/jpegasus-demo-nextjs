@@ -7,8 +7,8 @@
     "deploy": "yarn export && gh-pages -d out -t true",
     "dev": "next dev",
     "export": "yarn build && next export -o jpegasus-demo-nextjs && touch jpegasus-demo-nextjs/.nojekyll",
-    "serve": "nodemon --watch pages --watch styles --watch public ",
-    "start": "yarn export && serve -l 3000"
+    "serve": "yarn export && serve -l 3000",
+    "start": "nodemon --watch pages --watch styles --watch public --exec yarn serve"
   },
   "dependencies": {
     "next": "9.5.5",
