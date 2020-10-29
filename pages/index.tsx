@@ -1,5 +1,6 @@
 import Head from 'next/head';
-import SelectOption from '../components/SelectOption';
+import SelectOptionNumber from '../components/SelectOptionNumber';
+import SelectOptionBoolean from '../components/SelectOptionBoolean';
 
 export default function Home() {
   return (
@@ -10,62 +11,46 @@ export default function Home() {
             <img alt="JPEGasus logo" src="img/jpegasus-logo-reversed.png" />
           </h1>
           <form>
-              <SelectOption
+              <SelectOptionNumber
                 labelText="Max Height"
                 increaseBy={100}
                 defaultValue={1000}
                 divideBy={1}
                 maximum={10000}
                 minimum={0} />
-              <SelectOption
+              <SelectOptionNumber
                 labelText="Max Width"
                 increaseBy={100}
                 defaultValue={1000}
                 divideBy={1}
                 maximum={10000}
                 minimum={0} />
-              <SelectOption
+              <SelectOptionNumber
                 labelText="Scale Image By"
                 increaseBy={1}
                 defaultValue={1}
                 divideBy={100}
                 maximum={200}
                 minimum={0} />
-              <SelectOption
+              <SelectOptionNumber
                 labelText="Quality"
                 increaseBy={1}
                 defaultValue={0.65}
                 divideBy={100}
                 maximum={100}
                 minimum={0} />
-              <label>
-                 <strong>Return original if compressed file is larger</strong>
-                 <select id="returnOriginalIfCompressedFileIsLargerSelector" value="false">
-                    <option value="false">false</option>
-                    <option value="true">true</option>
-                 </select>
-              </label>
-              <label>
-                 <strong>Return original on failure</strong>
-                 <select id="returnOriginalOnFailureSelector" value="true">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                 </select>
-              </label>
-              <label>
-                 <strong>Fix image orientation</strong>
-                 <select id="fixImageOrientation" value="true">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                 </select>
-              </label>
-              <label>
-                 <strong>Preserve file type</strong>
-                 <select id="preserveFileType" value="false">
-                    <option value="true">true</option>
-                    <option value="false">false</option>
-                 </select>
-              </label>
+              <SelectOptionBoolean
+                labelText="Return original if compressed file is larger"
+                defaultValue="false" />
+              <SelectOptionBoolean
+                labelText="Return original on failure"
+                defaultValue="true" />
+              <SelectOptionBoolean
+                labelText="Fix image orientation"
+                defaultValue="true" />
+              <SelectOptionBoolean
+                labelText="Preserve file type"
+                defaultValue="false" />
               <label>
                  <strong>Transparency fill color</strong>
                  <input type="text" id="transparencyFillColor" value="#FFF" />

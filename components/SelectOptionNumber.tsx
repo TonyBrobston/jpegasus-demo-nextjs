@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import {camelCase} from 'camel-case';
 
-const SelectOption = ({labelText, increaseBy, divideBy, minimum, maximum, defaultValue}): ReactElement => {
+const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, maximum, defaultValue}): ReactElement => {
   const selectorId = `${camelCase(labelText)}Selector`;
   const numberOfValues = Math.floor((maximum - minimum) / increaseBy);
   const valuesDummyArray = Array(numberOfValues).fill(0);
@@ -18,4 +18,4 @@ const SelectOption = ({labelText, increaseBy, divideBy, minimum, maximum, defaul
   );
 }
 
-export default SelectOption;
+export default SelectOptionNumber;
