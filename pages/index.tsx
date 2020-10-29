@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import SelectOptionNumber from '../components/SelectOptionNumber';
 import SelectOptionBoolean from '../components/SelectOptionBoolean';
+import InputOptionText from '../components/InputOptionText';
 
 export default function Home() {
   return (
@@ -51,10 +52,9 @@ export default function Home() {
               <SelectOptionBoolean
                 labelText="Preserve file type"
                 defaultValue="false" />
-              <label>
-                 <strong>Transparency fill color</strong>
-                 <input type="text" id="transparencyFillColor" value="#FFF" />
-              </label>
+              <InputOptionText
+                labelText="Transparency fill color"
+                defaultValue="#FFF" />
               <label>
                  <strong>Upload Image</strong>
                  <input type="file" id="imageInput" />
