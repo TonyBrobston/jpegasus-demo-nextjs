@@ -13,47 +13,47 @@ export default function Home() {
           </h1>
           <form>
               <SelectOptionNumber
-                labelText="Max Height"
+                labelText="maxHeight"
                 increaseBy={100}
                 defaultValue={1000}
                 divideBy={1}
                 maximum={10000}
                 minimum={0} />
               <SelectOptionNumber
-                labelText="Max Width"
+                labelText="maxWidth"
                 increaseBy={100}
                 defaultValue={1000}
                 divideBy={1}
                 maximum={10000}
                 minimum={0} />
               <SelectOptionNumber
-                labelText="Scale Image By"
+                labelText="scaleImageBy"
                 increaseBy={1}
                 defaultValue={1}
                 divideBy={100}
                 maximum={200}
                 minimum={0} />
               <SelectOptionNumber
-                labelText="Quality"
+                labelText="quality"
                 increaseBy={1}
                 defaultValue={0.65}
                 divideBy={100}
                 maximum={100}
                 minimum={0} />
               <SelectOptionBoolean
-                labelText="Return original if compressed file is larger"
+                labelText="returnOriginalIfCompressedFileIsLarger"
                 defaultValue="false" />
               <SelectOptionBoolean
-                labelText="Return original on failure"
+                labelText="returnOriginalOnFailure"
                 defaultValue="true" />
               <SelectOptionBoolean
-                labelText="Fix image orientation"
+                labelText="fixImageOrientation"
                 defaultValue="true" />
               <SelectOptionBoolean
-                labelText="Preserve file type"
+                labelText="preserveFileType"
                 defaultValue="false" />
               <InputOptionText
-                labelText="Transparency fill color"
+                labelText="transparencyFillColor"
                 defaultValue="#FFF" />
               <label>
                  <strong>Upload Image</strong>
