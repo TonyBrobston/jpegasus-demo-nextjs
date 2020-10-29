@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Option from '../components/Option';
+import SelectOption from '../components/SelectOption';
 
 export default function Home() {
   return (
@@ -10,30 +10,30 @@ export default function Home() {
             <img alt="JPEGasus logo" src="img/jpegasus-logo-reversed.png" />
           </h1>
           <form>
-              <Option
+              <SelectOption
                 labelText="Max Height"
-                decreaseBy={100}
+                increaseBy={100}
                 defaultValue={1000}
                 divideBy={1}
                 maximum={10000}
                 minimum={0} />
-              <Option
+              <SelectOption
                 labelText="Max Width"
-                decreaseBy={100}
+                increaseBy={100}
                 defaultValue={1000}
                 divideBy={1}
                 maximum={10000}
                 minimum={0} />
-              <Option
+              <SelectOption
                 labelText="Scale Image By"
-                decreaseBy={1}
+                increaseBy={1}
                 defaultValue={1}
                 divideBy={100}
                 maximum={200}
                 minimum={0} />
-              <Option
+              <SelectOption
                 labelText="Quality"
-                decreaseBy={1}
+                increaseBy={1}
                 defaultValue={0.65}
                 divideBy={100}
                 maximum={100}
