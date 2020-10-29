@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "deploy": "yarn export && gh-pages -d out -t true",
+    "deploy": "yarn export && gh-pages -d jpegasus-demo-nextjs -t true",
     "dev": "next dev",
     "export": "yarn build && next export -o jpegasus-demo-nextjs && touch jpegasus-demo-nextjs/.nojekyll",
     "serve": "yarn export && serve -l 3000",

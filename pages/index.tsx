@@ -10,8 +10,20 @@ export default function Home() {
             <img alt="JPEGasus logo" src="img/jpegasus-logo-reversed.png" />
           </h1>
           <form>
-              <Option labelText="Max Height" value="1000" />
-              <Option labelText="Max Width" value="1000" />
+              <Option
+                labelText="Max Height"
+                decreaseBy={100}
+                defaultValue={1000}
+                divideBy={1}
+                maximum={10000}
+                minimum={0} />
+              <Option
+                labelText="Max Width"
+                decreaseBy={100}
+                defaultValue={1000}
+                divideBy={1}
+                maximum={10000}
+                minimum={0} />
               <label>
                  <strong>Scale Image By</strong>
                  <select id="scaleImageBy" value="1">
