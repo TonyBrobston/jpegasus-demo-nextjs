@@ -1,7 +1,5 @@
 import Head from 'next/head';
-import SelectOptionNumber from '../components/SelectOptionNumber';
-import SelectOptionBoolean from '../components/SelectOptionBoolean';
-import InputOptionText from '../components/InputOptionText';
+import {SelectOptionNumber, SelectOptionBoolean, InputOptionText} from '../components/Options';
 
 export default function Home() {
   return (
