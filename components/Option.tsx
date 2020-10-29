@@ -3,7 +3,7 @@ import {camelCase} from 'camel-case';
 
 const options = (decreaseBy, divideBy, minimum, maximum, defaultValue) => {
   const length = Math.floor((maximum - minimum) / decreaseBy)
-  const numbers = Array(length).fill(undefined).map((iterator, index) => (minimum + (index * decreaseBy) + decreaseBy) / divideBy)
+  const numbers = Array(length).fill(0).map((iterator, index) => (minimum + (index * decreaseBy) + decreaseBy) / divideBy)
   return numbers.map((number) => <option value={number}>{number}</option>);
 }
 
