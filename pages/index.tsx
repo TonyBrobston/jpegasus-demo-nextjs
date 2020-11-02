@@ -6,12 +6,34 @@ import {SelectOptionNumber, SelectOptionBoolean, InputOptionText} from '../compo
 
 class Home extends Component<{}, {
   compressedFile: File|Blob,
+  options: {
+    maxHeight?: number,
+    maxWidth?: number,
+    scaleImageBy?: number,
+    quality?: number,
+    returnOriginalIfCompressedFileIsLarger?: boolean,
+    returnOriginalOnFailure?: boolean,
+    fixImageOrientation?: boolean,
+    preserveFileType?: boolean,
+    transparencyFillColor?: string
+  },
   originalFile: File
 }> {
   constructor(props) {
     super(props);
     this.state = {
       compressedFile: null,
+      options: {
+        maxHeight: 1000,
+        maxWidth: 1000,
+        scaleImageBy: 1,
+        quality: 0.65,
+        returnOriginalIfCompressedFileIsLarger: false,
+        returnOriginalOnFailure: true,
+        fixImageOrientation: true,
+        preserveFileType: false,
+        transparencyFillColor: '#FFF'
+      },
       originalFile: null
     }
   }
@@ -28,65 +50,160 @@ class Home extends Component<{}, {
               <SelectOptionNumber
                 labelText="maxHeight"
                 increaseBy={100}
-                defaultValue={1000}
+                value={this.state.options.maxHeight}
                 divideBy={1}
                 maximum={10000}
-                minimum={0} />
+                minimum={0}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        maxHeight: value
+                      }
+                    })
+                  }
+                }
+              />
               <SelectOptionNumber
                 labelText="maxWidth"
                 increaseBy={100}
-                defaultValue={1000}
+                value={this.state.options.maxWidth}
                 divideBy={1}
                 maximum={10000}
-                minimum={0} />
+                minimum={0}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        maxWidth: value
+                      }
+                    })
+                  }
+                }
+              />
               <SelectOptionNumber
                 labelText="scaleImageBy"
                 increaseBy={1}
-                defaultValue={1}
+                value={this.state.options.scaleImageBy}
                 divideBy={100}
                 maximum={200}
-                minimum={0} />
+                minimum={0}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        scaleImageBy: value
+                      }
+                    })
+                  }
+                }
+              />
               <SelectOptionNumber
                 labelText="quality"
                 increaseBy={1}
-                defaultValue={0.65}
+                value={this.state.options.quality}
                 divideBy={100}
                 maximum={100}
-                minimum={0} />
+                minimum={0}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        quality: value
+                      }
+                    })
+                  }
+                }
+              />
               <SelectOptionBoolean
                 labelText="returnOriginalIfCompressedFileIsLarger"
-                defaultValue="false" />
+                value={this.state.options.returnOriginalIfCompressedFileIsLarger}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        returnOriginalIfCompressedFileIsLarger: value == "true"
+                      }
+                    })
+                  }
+                }
+              />
               <SelectOptionBoolean
                 labelText="returnOriginalOnFailure"
-                defaultValue="true" />
+                value={this.state.options.returnOriginalOnFailure}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        returnOriginalOnFailure: value == "true"
+                      }
+                    })
+                  }
+                }
+              />
               <SelectOptionBoolean
                 labelText="fixImageOrientation"
-                defaultValue="true" />
+                value={this.state.options.fixImageOrientation}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        fixImageOrientation: value == "true"
+                      }
+                    })
+                  }
+                }
+              />
               <SelectOptionBoolean
                 labelText="preserveFileType"
-                defaultValue="false" />
+                value={this.state.options.preserveFileType}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        preserveFileType: value == "true"
+                      }
+                    })
+                  }
+                }
+              />
               <InputOptionText
                 labelText="transparencyFillColor"
-                defaultValue="#FFF" />
+                value={this.state.options.transparencyFillColor}
+                onChange={
+                  ({target: {value}}) => {
+                    this.setState({
+                      options: {
+                        transparencyFillColor: value
+                      }
+                    })
+                  }
+                }
+              />
               <label>
                 <strong>Upload Image</strong>
-                <input type="file" id="imageInput" onChange={
-                  (event) => {
-                    const originalFile = event.target.files[0];
-                    this.setState({
-                      compressedFile: null,
-                      originalFile
-                    });
+                <input
+                  type="file"
+                  id="imageInput"
+                  onChange={
+                    ({target: {files}}) => {
+                      this.setState({
+                        compressedFile: null,
+                        originalFile: files[0]
+                      });
+                    }
+                  } />
+              </label>
+              <input
+                type="button"
+                value="Submit"
+                onClick={
+                  async () => {
+                    const originalFile = this.state.originalFile;
+                    const compressedFile = await compress(originalFile);
+                    this.setState({compressedFile})
                   }
                 } />
-              </label>
-              <input type="button" value="Submit" onClick={
-                async () => {
-                  const originalFile = this.state.originalFile;
-                  const compressedFile = await compress(originalFile);
-                  this.setState({compressedFile})
-                }
-              } />
               <table>
                 <thead>
                   <tr>

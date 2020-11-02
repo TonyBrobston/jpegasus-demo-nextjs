@@ -1,17 +1,21 @@
 import {ReactElement} from 'react';
 import {camelCase} from 'camel-case';
 
-const values = (labelText, increaseBy, divideBy, minimum, maximum, defaultValue) => {
+const values = (labelText, increaseBy, divideBy, minimum, maximum, value) => {
   const numberOfValues = Math.floor((maximum - minimum) / increaseBy);
   const valuesDummyArray = Array(numberOfValues).fill(0);
   const values = valuesDummyArray.map((iterator, index) => (minimum + increaseBy + (index * increaseBy)) / divideBy).reverse();
   return values;
 }
 
-export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, maximum, defaultValue}): ReactElement =>
+export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, maximum, value, onChange}): ReactElement =>
   <label>
     <strong>{labelText}</strong>
-    <select id={`${camelCase(labelText)}Selector`} value={defaultValue}>
+    <select
+      id={`${camelCase(labelText)}Selector`}
+      value={value}
+      onChange={onChange}
+    >
     {
       values(
         labelText,
@@ -19,7 +23,7 @@ export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, ma
         divideBy,
         minimum,
         maximum,
-        defaultValue
+        value
       ).map(
         (value) => <option value={value}>{value}</option>
       )
@@ -27,17 +31,26 @@ export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, ma
     </select>
   </label>;
 
-export const SelectOptionBoolean = ({labelText, defaultValue}): ReactElement =>
+export const SelectOptionBoolean = ({labelText, value, onChange}): ReactElement =>
   <label>
     <strong>{labelText}</strong>
-    <select id={`${camelCase(labelText)}Selector`} value={defaultValue}>
+    <select
+      id={`${camelCase(labelText)}Selector`}
+      value={value}
+      onChange={onChange}
+    >
       <option value="true">true</option>
       <option value="false">false</option>
     </select>
   </label>;
 
-export const InputOptionText = ({labelText, defaultValue}): ReactElement =>
+export const InputOptionText = ({labelText, value, onChange}): ReactElement =>
   <label>
     <strong>{labelText}</strong>
-    <input type="text" id={`${camelCase(labelText)}Input`} value={defaultValue} />
+    <input
+      type="text"
+      id={`${camelCase(labelText)}Input`}
+      value={value}
+      onChange={onChange}
+    />
   </label>;
