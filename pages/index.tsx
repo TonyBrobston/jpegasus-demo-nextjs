@@ -7,15 +7,15 @@ import {SelectOptionNumber, SelectOptionBoolean, InputOptionText} from '../compo
 class Home extends Component<{}, {
   compressedFile: File|Blob,
   options: {
-    maxHeight?: number,
-    maxWidth?: number,
-    scaleImageBy?: number,
-    quality?: number,
-    returnOriginalIfCompressedFileIsLarger?: boolean,
-    returnOriginalOnFailure?: boolean,
-    fixImageOrientation?: boolean,
-    preserveFileType?: boolean,
-    transparencyFillColor?: string
+    maxHeight: number,
+    maxWidth: number,
+    scaleImageBy: number,
+    quality: number,
+    returnOriginalIfCompressedFileIsLarger: boolean,
+    returnOriginalOnFailure: boolean,
+    fixImageOrientation: boolean,
+    preserveFileType: boolean,
+    transparencyFillColor: string
   },
   originalFile: File
 }> {
@@ -58,7 +58,8 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
-                        maxHeight: value
+                        ...this.state.options,
+                        maxHeight: parseInt(value)
                       }
                     })
                   }
@@ -75,7 +76,8 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
-                        maxWidth: value
+                        ...this.state.options,
+                        maxWidth: parseInt(value)
                       }
                     })
                   }
@@ -92,7 +94,8 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
-                        scaleImageBy: value
+                        ...this.state.options,
+                        scaleImageBy: parseFloat(value)
                       }
                     })
                   }
@@ -109,7 +112,8 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
-                        quality: value
+                        ...this.state.options,
+                        quality: parseFloat(value)
                       }
                     })
                   }
@@ -122,6 +126,7 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
+                        ...this.state.options,
                         returnOriginalIfCompressedFileIsLarger: value == "true"
                       }
                     })
@@ -135,6 +140,7 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
+                        ...this.state.options,
                         returnOriginalOnFailure: value == "true"
                       }
                     })
@@ -148,6 +154,7 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
+                        ...this.state.options,
                         fixImageOrientation: value == "true"
                       }
                     })
@@ -161,6 +168,7 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
+                        ...this.state.options,
                         preserveFileType: value == "true"
                       }
                     })
@@ -174,6 +182,7 @@ class Home extends Component<{}, {
                   ({target: {value}}) => {
                     this.setState({
                       options: {
+                        ...this.state.options,
                         transparencyFillColor: value
                       }
                     })
@@ -199,8 +208,8 @@ class Home extends Component<{}, {
                 value="Submit"
                 onClick={
                   async () => {
-                    const originalFile = this.state.originalFile;
-                    const compressedFile = await compress(originalFile);
+                    const {originalFile, options} = this.state;
+                    const compressedFile = await compress(originalFile, options);
                     this.setState({compressedFile})
                   }
                 } />
