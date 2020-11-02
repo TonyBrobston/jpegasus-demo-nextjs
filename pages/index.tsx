@@ -241,7 +241,15 @@ class Home extends Component<{}, {
           </header>
           <main role="main">
             <span id="compressedImageSpan">
-              Please upload an image to see a preview here
+              {
+                this.state.compressedFile ?
+                  <img
+                    id="compressedImage"
+                    src={URL.createObjectURL(this.state.compressedFile)}
+                  />
+                :
+                  "Please upload an image to see a preview here"
+              }
             </span>
           </main>
         </div>
