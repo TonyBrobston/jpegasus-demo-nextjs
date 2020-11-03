@@ -1,11 +1,12 @@
 import {Component} from 'react';
 import Head from 'next/head';
-import {compress} from 'jpegasus';
+import {compress, determineOrientation} from 'jpegasus';
 
 import {SelectOptionNumber, SelectOptionBoolean, InputOptionText} from '../components/Options';
 
 class Home extends Component<{}, {
   compressedFile: File|Blob,
+  compressedFileOrientation: number,
   options: {
     maxHeight: number,
     maxWidth: number,
@@ -17,12 +18,14 @@ class Home extends Component<{}, {
     preserveFileType: boolean,
     transparencyFillColor: string
   },
-  originalFile: File
+  originalFile: File,
+  originalFileOrientation: number
 }> {
   constructor(props) {
     super(props);
     this.state = {
       compressedFile: null,
+      compressedFileOrientation: null,
       options: {
         maxHeight: 1000,
         maxWidth: 1000,
@@ -34,7 +37,8 @@ class Home extends Component<{}, {
         preserveFileType: false,
         transparencyFillColor: '#FFF'
       },
-      originalFile: null
+      originalFile: null,
+      originalFileOrientation: null,
     }
   }
 
@@ -195,10 +199,14 @@ class Home extends Component<{}, {
                   type="file"
                   id="imageInput"
                   onChange={
-                    ({target: {files}}) => {
+                    async ({target: {files}}) => {
+                      const originalFile = files[0];
+                      const originalFileOrientation = await determineOrientation(originalFile);
                       this.setState({
                         compressedFile: null,
-                        originalFile: files[0]
+                        compressedFileOrientation: null,
+                        originalFileOrientation,
+                        originalFile
                       });
                     }
                   } />
@@ -210,7 +218,11 @@ class Home extends Component<{}, {
                   async () => {
                     const {originalFile, options} = this.state;
                     const compressedFile = await compress(originalFile, options);
-                    this.setState({compressedFile})
+                    const compressedFileOrientation = await determineOrientation(compressedFile);
+                    this.setState({
+                      compressedFile,
+                      compressedFileOrientation
+                    })
                   }
                 } />
               <table>
@@ -227,13 +239,13 @@ class Home extends Component<{}, {
                     <td><strong>Original</strong></td>
                     <td id="originalSize">{this.state.originalFile ? (this.state.originalFile.size / 1024).toFixed(2) : "—"}</td>
                     <td id="originalType">{this.state.originalFile ? this.state.originalFile.type : "—"}</td>
-                    <td id="originalOrientation">—</td>
+                    <td id="originalOrientation">{this.state.originalFileOrientation ? this.state.originalFileOrientation : "—"}</td>
                   </tr>
                   <tr>
                     <td><strong>Compressed</strong></td>
                     <td id="compressedSize">{this.state.compressedFile ? (this.state.compressedFile.size / 1024).toFixed(2) : "—"}</td>
                     <td id="compressedType">{this.state.compressedFile ? this.state.compressedFile.type : "—"}</td>
-                    <td id="compressedOrientation">—</td>
+                    <td id="compressedOrientation">{this.state.compressedFileOrientation ? this.state.compressedFileOrientation : "—"}</td>
                   </tr>
                 </tbody>
               </table>
