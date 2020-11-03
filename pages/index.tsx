@@ -201,7 +201,7 @@ class Home extends Component<{}, {
                   onChange={
                     async ({target: {files}}) => {
                       const originalFile = files[0];
-                      const originalFileOrientation = await determineOrientation(originalFile);
+                      const originalFileOrientation = originalFile ?  await determineOrientation(originalFile) : null;
                       this.setState({
                         compressedFile: null,
                         compressedFileOrientation: null,
