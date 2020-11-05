@@ -1,5 +1,4 @@
 import {Component} from 'react';
-import Head from 'next/head';
 import {compress, determineOrientation} from 'jpegasus';
 
 import {SelectOptionNumber, SelectOptionBoolean, InputOptionText} from '../components/Options';
@@ -201,7 +200,7 @@ class Home extends Component<{}, {
                   onChange={
                     async ({target: {files}}) => {
                       const originalFile = files[0];
-                      const originalFileOrientation = originalFile ?  await determineOrientation(originalFile) : null;
+                      const originalFileOrientation = originalFile ? await determineOrientation(originalFile) : null;
                       this.setState({
                         compressedFile: null,
                         compressedFileOrientation: null,
