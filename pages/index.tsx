@@ -131,7 +131,7 @@ class Home extends Component<{}, {
                     this.setState({
                       options: {
                         ...this.state.options,
-                        returnOriginalIfCompressedFileIsLarger: value == "true"
+                        returnOriginalIfCompressedFileIsLarger: value === "true"
                       }
                     })
                   }
@@ -145,7 +145,7 @@ class Home extends Component<{}, {
                     this.setState({
                       options: {
                         ...this.state.options,
-                        returnOriginalOnFailure: value == "true"
+                        returnOriginalOnFailure: value === "true"
                       }
                     })
                   }
@@ -159,7 +159,7 @@ class Home extends Component<{}, {
                     this.setState({
                       options: {
                         ...this.state.options,
-                        fixImageOrientation: value == "true"
+                        fixImageOrientation: value === "true"
                       }
                     })
                   }
@@ -173,7 +173,7 @@ class Home extends Component<{}, {
                     this.setState({
                       options: {
                         ...this.state.options,
-                        preserveFileType: value == "true"
+                        preserveFileType: value === "true"
                       }
                     })
                   }
