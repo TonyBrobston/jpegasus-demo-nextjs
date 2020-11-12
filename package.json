@@ -8,7 +8,7 @@
     "dev": "next dev",
     "export": "yarn build && next export -o jpegasus-demo-nextjs && touch jpegasus-demo-nextjs/.nojekyll",
     "serve": "yarn export && serve -l 3000",
-    "start": "nodemon --watch src --watch styles --watch public --ext js,ts,tsx,png,css --exec yarn serve"
+    "start": "nodemon --watch src --watch public --ext js,ts,tsx,png,css --exec yarn serve"
   },
   "dependencies": {
     "camel-case": "^4.1.1",
