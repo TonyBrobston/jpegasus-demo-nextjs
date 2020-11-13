@@ -1,26 +1,11 @@
-import {Component} from 'react';
+import {Component, ReactElement} from 'react';
 import {compress, determineOrientation} from 'jpegasus';
+import {IDemoComponent} from '../types/Components';
 
 import {SelectOptionNumber, SelectOptionBoolean, InputOptionText} from '../components/Options';
 
-class Home extends Component<{}, {
-  compressedFile: File|Blob,
-  compressedFileOrientation: number,
-  options: {
-    maxHeight: number,
-    maxWidth: number,
-    scaleImageBy: number,
-    quality: number,
-    returnOriginalIfCompressedFileIsLarger: boolean,
-    returnOriginalOnFailure: boolean,
-    fixImageOrientation: boolean,
-    preserveFileType: boolean,
-    transparencyFillColor: string
-  },
-  originalFile: File,
-  originalFileOrientation: number
-}> {
-  constructor(props) {
+class Demo extends Component<unknown, IDemoComponent> {
+  constructor(props: unknown) {
     super(props);
     this.state = {
       compressedFile: null,
@@ -41,7 +26,7 @@ class Home extends Component<{}, {
     }
   }
 
-  render() {
+  render(): ReactElement {
     return (
       <div className="wrapper">
         <div className="container">
@@ -124,7 +109,7 @@ class Home extends Component<{}, {
               />
               <SelectOptionBoolean
                 labelText="returnOriginalIfCompressedFileIsLarger"
-                value={this.state.options.returnOriginalIfCompressedFileIsLarger}
+                value={this.state.options.returnOriginalIfCompressedFileIsLarger.toString()}
                 onChange={
                   ({target: {value}}) => {
                     this.setState({
@@ -138,7 +123,7 @@ class Home extends Component<{}, {
               />
               <SelectOptionBoolean
                 labelText="returnOriginalOnFailure"
-                value={this.state.options.returnOriginalOnFailure}
+                value={this.state.options.returnOriginalOnFailure.toString()}
                 onChange={
                   ({target: {value}}) => {
                     this.setState({
@@ -152,7 +137,7 @@ class Home extends Component<{}, {
               />
               <SelectOptionBoolean
                 labelText="fixImageOrientation"
-                value={this.state.options.fixImageOrientation}
+                value={this.state.options.fixImageOrientation.toString()}
                 onChange={
                   ({target: {value}}) => {
                     this.setState({
@@ -166,7 +151,7 @@ class Home extends Component<{}, {
               />
               <SelectOptionBoolean
                 labelText="preserveFileType"
-                value={this.state.options.preserveFileType}
+                value={this.state.options.preserveFileType.toString()}
                 onChange={
                   ({target: {value}}) => {
                     this.setState({
@@ -269,4 +254,4 @@ class Home extends Component<{}, {
   }
 }
 
-export default Home;
+export default Demo;

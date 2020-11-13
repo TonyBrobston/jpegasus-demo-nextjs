@@ -1,4 +1,4 @@
-module.exports = (phase) => {
+module.exports = () => {
     const basePath = '/jpegasus-demo-nextjs';
     return {
       assetPrefix: `${basePath}/`,

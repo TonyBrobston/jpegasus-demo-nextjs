@@ -1,14 +1,18 @@
 import {ReactElement} from 'react';
 import {camelCase} from 'camel-case';
+import {
+  ISelectOptionNumber,
+  IGenericOption,
+} from '../types/Options';
 
-const values = (labelText, increaseBy, divideBy, minimum, maximum, value) => {
+const values = (labelText, increaseBy, divideBy, minimum, maximum) => {
   const numberOfValues = Math.floor((maximum - minimum) / increaseBy);
   const valuesDummyArray = Array(numberOfValues).fill(0);
   const values = valuesDummyArray.map((iterator, index) => (minimum + increaseBy + (index * increaseBy)) / divideBy).reverse();
   return values;
 }
 
-export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, maximum, value, onChange}): ReactElement =>
+export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, maximum, value, onChange}: ISelectOptionNumber): ReactElement =>
   <label>
     <strong>{labelText}</strong>
     <select
@@ -22,8 +26,7 @@ export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, ma
         increaseBy,
         divideBy,
         minimum,
-        maximum,
-        value
+        maximum
       ).map(
         (value) => <option value={value}>{value}</option>
       )
@@ -31,7 +34,7 @@ export const SelectOptionNumber = ({labelText, increaseBy, divideBy, minimum, ma
     </select>
   </label>;
 
-export const SelectOptionBoolean = ({labelText, value, onChange}): ReactElement =>
+export const SelectOptionBoolean = ({labelText, value, onChange}: IGenericOption): ReactElement =>
   <label>
     <strong>{labelText}</strong>
     <select
@@ -44,7 +47,7 @@ export const SelectOptionBoolean = ({labelText, value, onChange}): ReactElement 
     </select>
   </label>;
 
-export const InputOptionText = ({labelText, value, onChange}): ReactElement =>
+export const InputOptionText = ({labelText, value, onChange}: IGenericOption): ReactElement =>
   <label>
     <strong>{labelText}</strong>
     <input
