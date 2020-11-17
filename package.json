@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "acceptance": "./.scripts/runAcceptanceTests.sh",
+    "acceptance:interactive": "./.scripts/runAcceptanceTestsInteractive.sh",
     "build": "next build",
     "deploy": "yarn export && gh-pages -d jpegasus-demo-nextjs -t true",
     "dev": "next dev",
     "export": "yarn build && next export -o jpegasus-demo-nextjs && touch jpegasus-demo-nextjs/.nojekyll",
     "lint:ts": "yarn eslint . --ext .js,.jsx,.ts,.tsx",
-    "serve": "yarn export && serve -l 3000",
+    "serve": "yarn export && serve",
     "start": "nodemon --watch src --watch public --watch yarn.lock --ext js,ts,tsx,png,css --exec yarn serve"
   },
   "dependencies": {
@@ -25,12 +27,16 @@
     "@types/react": "^16.9.56",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
+    "cypress": "^5.6.0",
+    "cypress-file-upload": "^4.1.1",
     "eslint": "^7.13.0",
+    "eslint-plugin-cypress": "^2.11.2",
     "gh-pages": "^3.1.0",
     "husky": "^4.3.0",
     "nodemon": "^2.0.6",
     "serve": "^11.3.2",
-    "typescript": "^4.0.5"
+    "typescript": "^4.0.5",
+    "wait-on": "^5.2.0"
   },
   "husky": {
     "hooks": {
