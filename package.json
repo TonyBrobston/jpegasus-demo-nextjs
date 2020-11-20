@@ -6,12 +6,15 @@
     "acceptance": "./.scripts/runAcceptanceTests.sh",
     "acceptance:interactive": "./.scripts/runAcceptanceTestsInteractive.sh",
     "build": "next build",
+    "coverage": "jest --coverage --passWithNoTests",
     "deploy": "yarn export && gh-pages -d jpegasus-demo-nextjs -t true",
     "dev": "next dev",
     "export": "yarn build && next export -o jpegasus-demo-nextjs && touch jpegasus-demo-nextjs/.nojekyll",
     "lint:ts": "yarn eslint . --ext .js,.jsx,.ts,.tsx",
     "serve": "yarn export && serve",
-    "start": "nodemon --watch src --watch public --watch yarn.lock --ext js,ts,tsx,png,css --exec yarn serve"
+    "start": "nodemon --watch src --watch public --watch yarn.lock --ext js,ts,tsx,png,css --exec yarn serve",
+    "test": "yarn lint:ts && yarn coverage && yarn acceptance",
+    "unit": "jest --passWithNoTests"
   },
   "dependencies": {
     "camel-case": "^4.1.1",
@@ -33,6 +36,7 @@
     "eslint-plugin-cypress": "^2.11.2",
     "gh-pages": "^3.1.0",
     "husky": "^4.3.0",
+    "jest": "^26.6.3",
     "nodemon": "^2.0.6",
     "serve": "^11.3.2",
     "typescript": "^4.0.5",
