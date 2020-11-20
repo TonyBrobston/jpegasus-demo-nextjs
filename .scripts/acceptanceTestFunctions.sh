@@ -11,7 +11,7 @@ buildJpegasusDemo() {
 }
 
 startJpegasusDemo() {
-  yarn start -l $(echo $PORT) & wait-on http://localhost:$(echo $PORT)
+  yarn serve -l $(echo $PORT) & wait-on http://localhost:$(echo $PORT)
 }
 
 runCypress() {

@@ -1,0 +1,33 @@
+language: node_js
+os: osx
+osx_image: xcode11
+node_js:
+  - 10.22.0
+addons:
+  chrome: stable
+  firefox: "81.0"
+  homebrew:
+    casks:
+      - microsoft-edge
+    update: true
+before_cache:
+  - brew cleanup
+cache:
+  directories:
+    - ~/.npm
+    - ~/.cache
+    - $HOME/Library/Caches/Homebrew
+before_install:
+  - sudo pip install codecov
+after_success:
+  - codecov --file .coverage/lcov.info --disable search
+install:
+  - yarn
+script:
+  - yarn test
+deploy:
+  provider: script
+  script: sh .scripts/buildAndDeploy.sh
+  on:
+    branch: master
+    tags: true
